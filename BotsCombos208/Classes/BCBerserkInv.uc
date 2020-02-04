@@ -142,5 +142,5 @@ simulated function ClientAdjustFireRate()
 
 defaultproperties
 {
-     bReplicateInstigator=True
+     bReplicateInstigator=True EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 }
