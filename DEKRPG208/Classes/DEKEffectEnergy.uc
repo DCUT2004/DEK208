@@ -1,0 +1,32 @@
+class DEKEffectEnergy extends xEmitter;
+
+defaultproperties
+{
+     mSpawningType=ST_ExplodeRing
+     mMaxParticles=1
+     mDelayRange(1)=0.100000
+     mLifeRange(0)=0.500000
+     mLifeRange(1)=2.500000
+     mRegenRange(0)=10.000000
+     mRegenRange(1)=10.000000
+     mDirDev=(X=1.400000,Y=1.400000,Z=1.400000)
+     mPosDev=(X=0.250000,Y=0.250000,Z=0.250000)
+     mSpawnVecB=(X=2.000000,Z=0.030000)
+     mSpeedRange(0)=5.000000
+     mSpeedRange(1)=50.000000
+     mMassRange(0)=3.500000
+     mMassRange(1)=-3.500000
+     mAirResistance=0.200000
+     mSizeRange(0)=5.500000
+     mSizeRange(1)=25.000000
+     mGrowthRate=-4.000000
+     mAttenKa=0.250000
+     mAttenFunc=ATF_ExpInOut
+     Physics=PHYS_Trailer
+     RemoteRole=ROLE_SimulatedProxy
+     LifeSpan=3.000000
+     Skins(0)=Texture'2K4Menus.Controls.checkBoxBall_b'
+     Skins(1)=Texture'2K4Menus.Controls.checkBoxBall_b'
+     ScaleGlow=2.000000
+     Style=STY_Additive
+}

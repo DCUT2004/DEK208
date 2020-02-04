@@ -1,0 +1,32 @@
+class BloodHealFX extends xEmitter;
+
+defaultproperties
+{
+     mSpawningType=ST_Explode
+     mRegenPause=True
+     mRegenOnTime(0)=0.100000
+     mRegenOnTime(1)=0.100000
+     mRegenOffTime(0)=5.000000
+     mRegenOffTime(1)=5.000000
+     mLifeRange(0)=50.000000
+     mLifeRange(1)=50.000000
+     mRegenRange(0)=100.000000
+     mRegenRange(1)=100.000000
+     mPosDev=(X=12.000000,Y=12.000000,Z=12.000000)
+     mSpeedRange(0)=1.000000
+     mSpeedRange(1)=1.000000
+     mPosRelative=True
+     mAirResistance=-1.000000
+     mSpinRange(0)=200.000000
+     mSpinRange(1)=200.000000
+     mSizeRange(0)=40.500000
+     mSizeRange(1)=40.500000
+     //mColorRange(0)=(B=0,G=0,R=255)
+     //mColorRange(1)=(B=0,G=0,R=255)
+     mAttenKa=0.000000
+     Physics=PHYS_Trailer
+     RemoteRole=ROLE_SimulatedProxy
+     LifeSpan=0.500000
+     Skins(0)=Texture'XGAmeShadersB.Blood.BloodPuffA'
+     Style=STY_Additive
+}

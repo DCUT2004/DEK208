@@ -1,0 +1,34 @@
+class DEKEffectHealer extends xEmitter;
+
+defaultproperties
+{
+     mSpawningType=ST_Explode
+     mStartParticles=0
+     mMaxParticles=1
+     mLifeRange(0)=1.500000
+     mRegenRange(0)=10.000000
+     mRegenRange(1)=10.000000
+     mDirDev=(X=2.400000,Y=2.400000,Z=2.400000)
+     mPosDev=(Y=1.250000,Z=5.000000)
+     mSpeedRange(0)=2.500000
+     mSpeedRange(1)=10.000000
+     mPosRelative=True
+     mMassRange(0)=-5.000000
+     mMassRange(1)=-10.000000
+     mAirResistance=2.000000
+     mOwnerVelocityFactor=1.000000
+     mSizeRange(0)=5.000000
+     mSizeRange(1)=26.000000
+     mColorRange(0)=(B=225,G=0,R=20)
+     mColorRange(1)=(B=225,G=0,R=50)
+     mAttenKa=0.500000
+     mAttenFunc=ATF_ExpInOut
+     bTrailerSameRotation=True
+     bNetTemporary=False
+     bReplicateMovement=False
+     Physics=PHYS_Trailer
+     RemoteRole=ROLE_SimulatedProxy
+     LifeSpan=4.750000
+     Skins(0)=Texture'XEffectMat.Combos.greencross'
+     Style=STY_Additive
+}
