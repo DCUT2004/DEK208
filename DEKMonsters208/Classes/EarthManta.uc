@@ -54,7 +54,7 @@ simulated function Heal()
 				if (FInv == None)
 				{
 					C.Pawn.GiveHealth(HealAmount, C.Pawn.default.HealthMax);
-					C.Pawn.PlayOwnedSound(Sound'PickupSounds.HealthPack', SLOT_None, PawnOwner.TransientSoundVolume*0.75);	//Just so I know this is really working
+					C.Pawn.PlayOwnedSound(Sound'PickupSounds.HealthPack', SLOT_None, C.Pawn.TransientSoundVolume*0.75);	//Just so I know this is really working
 				}
 			}
 		}
