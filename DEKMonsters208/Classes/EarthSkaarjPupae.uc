@@ -1,6 +1,8 @@
 class EarthSkaarjPupae extends DCPupae;
 
-var float IceDamageMultiplier, FireDamageMultiplier;
+var config float IceDamageMultiplier, FireDamageMultiplier;
+var config float HealInterval, HealRadius;
+var config int HealAmount;
 
 function bool SameSpeciesAs(Pawn P)
 {
@@ -21,8 +23,39 @@ function PostBeginPlay()
 	default.WaterSpeed *= class'ElementalConfigure'.default.EarthWaterSpeedMultiplier;
 	default.Mass *= class'ElementalConfigure'.default.EarthMassMultiplier;
 	
+	SetTimer(HealInterval, True);
+	
 	Super.PostBeginPlay();
 
+}
+
+simulated function Timer()
+{
+	Heal();
+}
+
+simulated function Heal()
+{
+	local Controller C;
+	local FriendlyMonsterInv FInv;
+	
+	C = Level.ControllerList;	
+	while (C != None)
+	{
+		if ( C != None && C.Pawn != None && C.Pawn.Health > 0 && C.Pawn != Instigator && C.Pawn.IsA('Monster') && C.SameTeamAs('Instigator.Controller')
+		&& VSize(C.Pawn.Location - Location) < HealRadius)
+		{
+			if (!C.Pawn.IsA('HealerNali') && !C.Pawn.IsA('MissionCow'))
+			{
+				FInv = FriendlyMonsterInv(C.Pawn.FindInventoryType(class'FriendlyMonsterInv'));
+				if (FInv == None)
+				{
+					C.Pawn.GiveHealth(HealAmount, C.Pawn.default.Health);
+				}
+			}
+		}
+		C = C.NextController;
+	}
 }
 
 function TakeDamage(int Damage, Pawn instigatedBy, Vector hitlocation, Vector momentum, class<DamageType> damageType)
@@ -48,7 +81,10 @@ function Died(Controller Killer, class<DamageType> damageType, vector HitLocatio
 
 defaultproperties
 {
-     IceDamageMultiplier=1.500000
-     FireDamageMultiplier=0.500000
-     ControllerClass=Class'DEKMonsters208.DCMonsterController'
+	HealAmount=5
+	HealInterval=1.00
+	HealRadius=800.00
+	IceDamageMultiplier=1.500000
+	FireDamageMultiplier=0.500000
+	ControllerClass=Class'DEKMonsters208.DCMonsterController'
 }

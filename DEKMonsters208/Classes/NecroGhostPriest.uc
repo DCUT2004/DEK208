@@ -122,7 +122,6 @@ function SpawnHealingOrb()
 	
 	while (C != None)
 	{
-		// loop round finding strongest enemy to attack
 		if ( C.Pawn != None && C.Pawn != Instigator && C.Pawn.Health > 0 && C.Pawn.IsA('Monster')
 		     && VSize(C.Pawn.Location - Instigator.Location) < TargetRadius && FastTrace(C.Pawn.Location, Instigator.Location) && !C.Pawn.IsA('HealerNali') && !C.Pawn.IsA('MissionCow') && !C.Pawn.bCanFly)
 		{
