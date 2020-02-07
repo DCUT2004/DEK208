@@ -45,14 +45,14 @@ simulated function Heal()
 	while (C != None)
 	{
 		if ( C != None && C.Pawn != None && C.Pawn != Instigator && C.Pawn.Health > 0 && C.Pawn.IsA('Monster')
-		&& VSize(C.Pawn.Location - Location) < OrbHealRadius)
+		&& C.SameTeamAs(Instigator.Controller) && VSize(C.Pawn.Location - Location) < OrbHealRadius)
 		{
 			if (!C.Pawn.IsA('HealerNali') && !C.Pawn.IsA('NecroGhostPriest') && !C.Pawn.IsA('MissionCow'))
 			{
 				FInv = FriendlyMonsterInv(C.Pawn.FindInventoryType(class'FriendlyMonsterInv'));
 				if (FInv == None)
 				{
-					C.Pawn.GiveHealth(HealAmount, C.Pawn.default.Health);
+					C.Pawn.GiveHealth(HealAmount, C.Pawn.HealthMax);
 				}
 			}
 		}

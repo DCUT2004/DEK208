@@ -1,4 +1,5 @@
-class ElementalConfigure extends Object;
+class ElementalConfigure extends Object
+	config(satoreMonsterPack);
 
 //Configures the various properties of elemental Earth, Fire, and Ice monsters
 

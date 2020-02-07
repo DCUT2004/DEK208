@@ -1,4 +1,4 @@
-class EarthSkaarjPupae extends DCPupae;
+class EarthManta extends DCManta;
 
 var config float IceDamageMultiplier, FireDamageMultiplier;
 var config float HealInterval, HealRadius;
