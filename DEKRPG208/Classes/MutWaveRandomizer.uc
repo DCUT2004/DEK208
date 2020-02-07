@@ -61,8 +61,7 @@ Spawn "this specifc monster" if replacing "this specific monster"
 
 defaultproperties
 {
-     Upgrader=Class'DEKRPG208.DruidUpgradeInv'
-     GroupName="DruidsRPGUpgradeMutator"
-     FriendlyName="DEKRPG208 Druid's RPG Upgrade Mutator"
-     Description="Druid's RPG Upgrade Mutator. Needed to upgrade old RPG Data"
+     GroupName="WaveRandomizer"
+     FriendlyName="Wave Randomizer"
+     Description="Wave Randomizer"
 }
