@@ -45,7 +45,7 @@ simulated function Heal()
 	C = Level.ControllerList;	
 	while (C != None)
 	{
-		if ( C != None && C.Pawn != None && C.Pawn.Health > 0 && C.Pawn != Instigator && C.Pawn.IsA('Monster') && C.SameTeamAs('Instigator.Controller')
+		if ( C != None && C.Pawn != None && C.Pawn.Health > 0 && C.Pawn != Instigator && C.Pawn.IsA('Monster') && C.SameTeamAs(Instigator.Controller)
 		&& VSize(C.Pawn.Location - Location) < HealRadius && FastTrace(C.Pawn.Location, Instigator.Location))
 		{
 			if (!C.Pawn.IsA('HealerNali') && !C.Pawn.IsA('MissionCow'))
