@@ -50,9 +50,9 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 				M.default.AirSpeed *= EarthAirSpeedMultiplier;
 				M.default.WaterSpeed *= EarthWaterSpeedMultiplier;
 				M.default.Mass *= EarthMassMultiplier;
-				M.default.DrawScale *= EarthDrawscaleMultiplier;
-				M.default.CollisionHeight *= EarthDrawscaleMultiplier;
-				M.default.CollisionRadius *= EarthDrawscaleMultiplier;
+				//M.default.DrawScale *= EarthDrawscaleMultiplier;
+				//M.default.CollisionHeight *= EarthDrawscaleMultiplier;
+				//M.default.CollisionRadius *= EarthDrawscaleMultiplier;
 				M.bDynamicLight = True;
 				M.LightHue=90;	//so I know this works
 				M.LightSaturation=100;	//so I know this works
@@ -76,17 +76,17 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 					M.default.AirSpeed *= FireAirSpeedMultiplier;
 					M.default.WaterSpeed *= FireWaterSpeedMultiplier;
 					M.default.Mass *= FireMassMultiplier;
-					M.default.DrawScale *= FireDrawscaleMultiplier;
-					M.default.CollisionHeight *= FireDrawscaleMultiplier;
-					M.default.CollisionRadius *= FireDrawscaleMultiplier;
+					//M.default.DrawScale *= FireDrawscaleMultiplier;
+					//M.default.CollisionHeight *= FireDrawscaleMultiplier;
+					//M.default.CollisionRadius *= FireDrawscaleMultiplier;
 					M.LightHue=30;	//so I know this works
 					M.LightSaturation=100;	//so I know this works
 					M.LightRadius=8.00;	//so I know this works
 					bFire = True;
 				}
+				if (bFire)
+					break;
 			}
-			if (bFire)
-				break;
 		}
 		if (!bEarth && !bFire)
 		{
@@ -102,17 +102,17 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 					M.default.AirSpeed *= IceAirSpeedMultiplier;
 					M.default.WaterSpeed *= IceWaterSpeedMultiplier;
 					M.default.Mass *= IceMassMultiplier;
-					M.default.DrawScale *= IceDrawscaleMultiplier;
-					M.default.CollisionHeight *= IceDrawscaleMultiplier;
-					M.default.CollisionRadius *= IceDrawscaleMultiplier;
+					//M.default.DrawScale *= IceDrawscaleMultiplier;
+					//M.default.CollisionHeight *= IceDrawscaleMultiplier;
+					//M.default.CollisionRadius *= IceDrawscaleMultiplier;
 					M.LightHue=210;	//so I know this works
 					M.LightSaturation=100;	//so I know this works
 					M.LightRadius=8.00;	//so I know this works
 					bIce = True;
 				}
+				if (bIce)
+					break;
 			}
-			if (bIce)
-				break;
 		}
 	}
 	return true;	//only call true when everything is finished
