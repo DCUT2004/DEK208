@@ -1,7 +1,9 @@
 class MutElementalConfigure extends Mutator
     config(satoreMonsterPack);
 
-var config Array<class<Monster>> EarthMonsters, FireMonsters, IceMonsters;
+var config Array< class<Monster> > EarthMonsters;
+var config Array< class<Monster> > FireMonsters;
+var config Array< class<Monster> > IceMonsters;
 
 var config float EarthHealthMultiplier;
 var config float EarthScoreMultiplier;
