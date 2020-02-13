@@ -14,18 +14,6 @@ function bool SameSpeciesAs(Pawn P)
 
 function PostBeginPlay()
 {
-	
-	default.Health *= class'ElementalConfigure'.default.EarthHealthMultiplier;
-	default.HealthMax *= class'ElementalConfigure'.default.EarthHealthMultiplier;
-	default.ScoringValue *= class'ElementalConfigure'.default.EarthScoreMultiplier;
-	default.GroundSpeed *= class'ElementalConfigure'.default.EarthGroundSpeedMultiplier;
-	default.AirSpeed *= class'ElementalConfigure'.default.EarthAirSpeedMultiplier;
-	default.WaterSpeed *= class'ElementalConfigure'.default.EarthWaterSpeedMultiplier;
-	default.Mass *= class'ElementalConfigure'.default.EarthMassMultiplier;
-	default.DrawScale *= class'ElementalConfigure'.default.EarthDrawscaleMultiplier;
-	default.CollisionHeight *= class'ElementalConfigure'.default.EarthDrawscaleMultiplier;
-	default.CollisionRadius *= class'ElementalConfigure'.default.EarthDrawscaleMultiplier;
-	
 	SetTimer(HealInterval, True);
 	
 	Super.PostBeginPlay();
