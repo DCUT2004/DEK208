@@ -4,16 +4,27 @@ var config float IceDamageMultiplier, FireDamageMultiplier;
 var config float HealInterval, HealRadius;
 var config int HealAmount;
 
-function bool SameSpeciesAs(Pawn P)
-{
-	if (SummonedMonster)
-		return ( P.class == class'HealerNali' || P.class == class'HealerNaliAdren' || P.class == class'HealerNaliShield' || P.class == class'EarthBrute' || P.Class == class'EarthChildGasbag' || P.Class == class'EarthChildSkaarjPupae' || P.Class == class'EarthGasbag' || P.Class == class'EarthGiantGasbag' || P.Class == class'EarthKrall' || P.Class == class'EarthLord' || P.Class == class'EarthManta' || P.Class == class'EarthMercenary' || P.Class == class'EarthNali' || P.Class == class'EarthNaliFighter' || P.Class == class'EarthQueen' || P.Class == class'EarthRazorfly' || P.Class == class'EarthSkaarjPupae' || P.Class == class'EarthSkaarjSniper' || P.Class == class'EarthSkaarjSuperHeat' || P.Class == class'EarthSlith' || P.Class == class'EarthSlug' || P.Class == class'EarthTitan');
-	else
-		return ( P.class == class'EarthBrute' || P.Class == class'EarthChildGasbag' || P.Class == class'EarthChildSkaarjPupae' || P.Class == class'EarthGasbag' || P.Class == class'EarthGiantGasbag' || P.Class == class'EarthKrall' || P.Class == class'EarthLord' || P.Class == class'EarthManta' || P.Class == class'EarthMercenary' || P.Class == class'EarthNali' || P.Class == class'EarthNaliFighter' || P.Class == class'EarthQueen' || P.Class == class'EarthRazorfly' || P.Class == class'EarthSkaarjPupae' || P.Class == class'EarthSkaarjSniper' || P.Class == class'EarthSkaarjSuperHeat' || P.Class == class'EarthSlith' || P.Class == class'EarthSlug' || P.Class == class'EarthTitan');
-}
+//function bool SameSpeciesAs(Pawn P)
+//{
+//	if (SummonedMonster)
+//		return ( P.class == class'HealerNali' || P.class == class'HealerNaliAdren' || P.class == class'HealerNaliShield' || P.class == class'EarthBrute' || P.Class == class'EarthChildGasbag' || P.Class == class'EarthChildSkaarjPupae' || P.Class == class'EarthGasbag' || P.Class == class'EarthGiantGasbag' || P.Class == class'EarthKrall' || P.Class == class'EarthLord' || P.Class == class'EarthManta' || P.Class == class'EarthMercenary' || P.Class == class'EarthNali' || P.Class == class'EarthNaliFighter' || P.Class == class'EarthQueen' || P.Class == class'EarthRazorfly' || P.Class == class'EarthSkaarjPupae' || P.Class == class'EarthSkaarjSniper' || P.Class == class'EarthSkaarjSuperHeat' || P.Class == class'EarthSlith' || P.Class == class'EarthSlug' || P.Class == class'EarthTitan');
+//	else
+//		return ( P.class == class'EarthBrute' || P.Class == class'EarthChildGasbag' || P.Class == class'EarthChildSkaarjPupae' || P.Class == class'EarthGasbag' || P.Class == class'EarthGiantGasbag' || P.Class == class'EarthKrall' || P.Class == class'EarthLord' || P.Class == class'EarthManta' || P.Class == class'EarthMercenary' || P.Class == class'EarthNali' || P.Class == class'EarthNaliFighter' || P.Class == class'EarthQueen' || P.Class == class'EarthRazorfly' || P.Class == class'EarthSkaarjPupae' || P.Class == class'EarthSkaarjSniper' || P.Class == class'EarthSkaarjSuperHeat' || P.Class == class'EarthSlith' || P.Class == class'EarthSlug' || P.Class == class'EarthTitan');
+//}
 
 function PostBeginPlay()
 {
+	Health *= class'ElementalConfigure'.default.EarthHealthMultiplier;
+	HealthMax *= class'ElementalConfigure'.default.EarthHealthMultiplier;
+	ScoringValue *= class'ElementalConfigure'.default.EarthScoreMultiplier;
+	GroundSpeed *= class'ElementalConfigure'.default.EarthGroundSpeedMultiplier;
+	AirSpeed *= class'ElementalConfigure'.default.EarthAirSpeedMultiplier;
+	WaterSpeed *= class'ElementalConfigure'.default.EarthWaterSpeedMultiplier;
+	Mass *= class'ElementalConfigure'.default.EarthMassMultiplier;
+	//Other.SetLocation(Other.Location+vect(0,0,1)*(Other.CollisionHeight*bigger/2));
+	SetDrawScale(Drawscale*class'ElementalConfigure'.default.EarthDrawscaleMultiplier);
+	SetCollisionSize(CollisionRadius*class'ElementalConfigure'.default.EarthDrawscaleMultiplier, default.CollisionHeight*class'ElementalConfigure'.default.EarthDrawscaleMultiplier);
+	
 	SetTimer(HealInterval, True);
 	
 	Super.PostBeginPlay();
@@ -28,22 +39,17 @@ simulated function Timer()
 simulated function Heal()
 {
 	local Controller C;
-	local FriendlyMonsterInv FInv;
 	
 	C = Level.ControllerList;	
 	while (C != None)
 	{
-		if ( C != None && C.Pawn != None && C.Pawn.Health > 0 && C.Pawn != Instigator && C.Pawn.IsA('Monster') && C.SameTeamAs(Instigator.Controller)
-		&& VSize(C.Pawn.Location - Location) < HealRadius && FastTrace(C.Pawn.Location, Instigator.Location))
+		if ( C != None && C.Pawn != None && C.Pawn.Health > 0 && C.Pawn.Health < C.Pawn.HealthMax && C.Pawn != Self && ClassIsChildOf(C.Pawn.Class, class'Monster') && C.SameTeamAs(Instigator.Controller)
+		&& VSize(C.Pawn.Location - Self.Location) <= HealRadius && FastTrace(C.Pawn.Location, Self.Location))
 		{
 			if (!C.Pawn.IsA('HealerNali') && !C.Pawn.IsA('MissionCow'))
 			{
-				FInv = FriendlyMonsterInv(C.Pawn.FindInventoryType(class'FriendlyMonsterInv'));
-				if (FInv == None)
-				{
-					C.Pawn.GiveHealth(HealAmount, C.Pawn.default.HealthMax);
-					C.Pawn.PlayOwnedSound(Sound'PickupSounds.HealthPack', SLOT_None, C.Pawn.TransientSoundVolume*0.75);	//Just so I know this is really working
-				}
+				C.Pawn.GiveHealth(HealAmount, C.Pawn.default.HealthMax);
+				Log("Healing - EarthPupae");
 			}
 		}
 		C = C.NextController;
